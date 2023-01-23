@@ -1,3 +1,13 @@
-# FROM node:16.14-alpine
-# WORKDIR /app-frontend
-#  ...
+FROM node:16.14-alpine
+WORKDIR /app-frontend
+
+COPY package-lock.json .
+COPY package.json .
+
+RUN npm i
+
+COPY . .
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]

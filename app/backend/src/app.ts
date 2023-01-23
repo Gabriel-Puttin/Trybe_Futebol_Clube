@@ -1,4 +1,5 @@
 import * as express from 'express';
+import loginRouter from './routes/LoginRouter';
 
 class App {
   public app: express.Express;
@@ -10,6 +11,11 @@ class App {
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
+    this.routes();
+  }
+
+  private routes(): void {
+    this.app.use('/login', loginRouter);
   }
 
   private config():void {
@@ -33,4 +39,3 @@ export { App };
 
 // Essa segunda exportação é estratégica, e a execução dos testes de cobertura depende dela
 export const { app } = new App();
-// initial commit
