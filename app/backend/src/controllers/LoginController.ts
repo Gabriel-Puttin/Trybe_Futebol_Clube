@@ -14,7 +14,6 @@ export default class LoginController {
 
   getRole = async (req: Request, res: Response) => {
     const { user } = req.body;
-    console.log(user);
     const { data: { role } } = user;
     res.status(HTTP_OK_STATUS).json({ role });
   };
