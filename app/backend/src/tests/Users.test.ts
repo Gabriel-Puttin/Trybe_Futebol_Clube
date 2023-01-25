@@ -7,7 +7,9 @@ import { app } from '../app';
 import Users from '../database/models/Users';
 
 import { Response } from 'superagent';
-import { userMock, userInfo, tokenMock, wrongUserInfo, JWTUserMock } from './mocks/login.mocks';
+import { userMock, userInfo, userTokenMock, wrongUserInfo, JWTUserMock } from './mocks/login.mocks';
+import { payload, tokenMock } from './mocks/JWT.mocks';
+import * as JWT from 'jsonwebtoken';
 import * as auth from '../auth/jwtFunctions';
 
 chai.use(chaiHttp);
@@ -27,11 +29,11 @@ describe('Teste da rotar "/login"', () => {
   })
 
   it('Verifica se é possível cadastrar um usuário com sucesso', async () => {
-    sinon.stub(auth, 'createToken').returns(tokenMock.token)
+    sinon.stub(auth, 'createToken').returns(userTokenMock.token)
     chaiHttpResponse = await chai.request(app).post('/login/').send(userInfo);
 
     expect(chaiHttpResponse.status).to.be.equal(200);
-    expect(chaiHttpResponse.body.token).to.be.equal(tokenMock.token);
+    expect(chaiHttpResponse.body.token).to.be.equal(userTokenMock.token);
   });
 
   it('Verificar se não é possível fazer o login sem informar o email', async () => {
@@ -48,11 +50,18 @@ describe('Teste da rotar "/login"', () => {
     expect(chaiHttpResponse.body.message).to.be.equal('Incorrect email or password');
   });
 
-  // it('verifica a rota "/login/validate/" se é possível retornar a função do usuário logado', async () => {
-  //   sinon.stub(auth, 'verifyToken').returns(JWTUserMock);
-  //   chaiHttpResponse = await chai.request(app).get('/login/validate/').set('Authorization', tokenMock.token);
+  it('verifica a rota "/login/validate/" se existe um token', async () => {
+    chaiHttpResponse = await chai.request(app).get('/login/validate/');
+    
+    expect(chaiHttpResponse.status).to.be.equal(401);
+    expect(chaiHttpResponse.body).to.deep.equal({ message: "Token not found" });
+  });
 
-  //   expect(chaiHttpResponse.status).to.be.equal(200);
-  //   expect(chaiHttpResponse.body.role).to.be.equal(JWTUserMock.data.role);
+  // it('verifica a rota "/login/validate/" se é possível retornar a função do usuário logado', async () => {
+  //   // sinon.stub(JWT, 'verify').resolves(payload);
+  //   chaiHttpResponse = await chai.request(app).get('/login/validate/');
+    
+  //   expect(chaiHttpResponse.status).to.be.equal(401);
+  //   expect(chaiHttpResponse.body).to.deep.equal({ message: "Token not found" });
   // });
 });

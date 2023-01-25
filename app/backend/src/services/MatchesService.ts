@@ -44,11 +44,10 @@ export default class MatchesService {
 
   updateMatche = async (matcheId: number, attMatche: IUpdateMatche): Promise<ObjReturn> => {
     const { homeTeamGoals, awayTeamGoals } = attMatche;
-    const matche = await Matches.update(
+    await Matches.update(
       { homeTeamGoals, awayTeamGoals },
       { where: { id: matcheId } },
     );
-    console.log(matche);
     return { type: null, message: 'The fields were updated' };
   };
 }

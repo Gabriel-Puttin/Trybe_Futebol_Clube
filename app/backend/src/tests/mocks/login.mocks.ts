@@ -8,7 +8,7 @@ export const wrongUserInfo = {
   password: 'secretuser'
 }
 
-export const tokenMock = {
+export const userTokenMock = {
   token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJ1c2VybmFtZSI6IlVzZXIiLCJlbWFpbCI6InVzZXJAdXNlci5jb20ifSwiaWF0IjoxNjc0NTA1MTkzLCJleHAiOjE2NzUxMDk5OTN9.BpmNbXINIK4Zk242B5_58XrtmUT8-huAZ8nGI5u5SE0'
 }
 
@@ -22,7 +22,7 @@ export const userMock = {
 }
 
 export const JWTUserMock = {
-  data: { id: 2, username: 'User', role: 'user', email: 'user@user.com' },
+  data: { id: 1, username: 'Admin', role: 'admin', email: 'admin@admin.com' },
   iat: 1674501967,
   exp: 1675106767
 }
