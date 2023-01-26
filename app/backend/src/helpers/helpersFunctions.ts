@@ -1,6 +1,6 @@
 import { IMatches, ILeaderboard } from '../interfaces/Matches.interface';
 
-export const calculateTotalPoints = (acc: number, curr: IMatches) => {
+const calculateTotalPoints = (acc: number, curr: IMatches) => {
   if (curr.homeTeamGoals > curr.awayTeamGoals) {
     return acc + 3;
   }
@@ -10,14 +10,14 @@ export const calculateTotalPoints = (acc: number, curr: IMatches) => {
   return acc;
 };
 
-export const calculateTotalVictories = (acc: number, curr: IMatches) => {
+const calculateTotalVictories = (acc: number, curr: IMatches) => {
   if (curr.homeTeamGoals > curr.awayTeamGoals) {
     return acc + 1;
   }
   return acc;
 };
 
-export const calculateTotalDraws = (acc: number, curr: IMatches) => {
+const calculateTotalDraws = (acc: number, curr: IMatches) => {
   if (curr.homeTeamGoals === curr.awayTeamGoals) {
     return acc + 1;
   }
