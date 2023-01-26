@@ -5,6 +5,7 @@ export interface IMatches {
   awayTeamId: number;
   awayTeamGoals: number;
   inProgress: boolean;
+  homeTeam: { teamName: string };
 }
 
 export interface INewMatche {
@@ -22,4 +23,17 @@ export interface IUpdateMatche {
 export interface ObjReturn {
   type: null | number;
   message: string | IMatches[] | INewMatche
+}
+
+export interface ILeaderboard {
+  name: string;
+  totalPoints: number;
+  totalGames: number;
+  totalVictories: number;
+  totalDraws: number;
+  totalLosses: number;
+  goalsFavor: number;
+  goalsOwn: number;
+  goalsBalance: number;
+  efficiency: string;
 }

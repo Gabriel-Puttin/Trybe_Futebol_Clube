@@ -19,7 +19,7 @@ export default class MatchesService {
         { model: Teams, as: 'awayTeam', attributes: { exclude: ['id'] } }],
       where: { inProgress } });
 
-    return { type: null, message: matches as IMatches[] };
+    return { type: null, message: matches as unknown as IMatches[] };
   };
 
   createNewMatche = async (matcheInfo: INewMatche): Promise<ObjReturn> => {

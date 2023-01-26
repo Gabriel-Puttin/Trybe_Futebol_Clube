@@ -1,8 +1,7 @@
 FROM node:16.14-alpine
 WORKDIR /app-backend
 
-COPY package-lock.json .
-COPY package.json .
+COPY package* .
 
 RUN npm i
 
@@ -10,4 +9,5 @@ COPY . .
 
 EXPOSE 3001
 
-CMD [ "npm", "start" ]
+ENTRYPOINT [ "npm", "run" ]
+CMD [ "start" ]
