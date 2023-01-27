@@ -1,6 +1,6 @@
 import { IMatches, ILeaderboard } from '../interfaces/Matches.interface';
 
-const calculateTotalPoints = (acc: number, curr: IMatches) => {
+const calculateHomeTotalPoints = (acc: number, curr: IMatches) => {
   if (curr.homeTeamGoals > curr.awayTeamGoals) {
     return acc + 3;
   }
@@ -10,7 +10,7 @@ const calculateTotalPoints = (acc: number, curr: IMatches) => {
   return acc;
 };
 
-const calculateTotalVictories = (acc: number, curr: IMatches) => {
+const calculateHomeTotalVictories = (acc: number, curr: IMatches) => {
   if (curr.homeTeamGoals > curr.awayTeamGoals) {
     return acc + 1;
   }
@@ -24,7 +24,7 @@ const calculateTotalDraws = (acc: number, curr: IMatches) => {
   return acc;
 };
 
-export const calculateTotalLosses = (acc: number, curr: IMatches) => {
+export const calculateHomeTotalLosses = (acc: number, curr: IMatches) => {
   if (curr.homeTeamGoals < curr.awayTeamGoals) {
     return acc + 1;
   }
@@ -37,15 +37,15 @@ const generatedArr = (singleMatches: IMatches[]) => {
   const resultArr = singleMatches.map((matche) => {
     const obj = {
       name: matche.homeTeam.teamName,
-      totalPoints: singleMatches.reduce(calculateTotalPoints, 0),
+      totalPoints: singleMatches.reduce(calculateHomeTotalPoints, 0),
       totalGames: singleMatches.length,
-      totalVictories: singleMatches.reduce(calculateTotalVictories, 0),
+      totalVictories: singleMatches.reduce(calculateHomeTotalVictories, 0),
       totalDraws: singleMatches.reduce(calculateTotalDraws, 0),
-      totalLosses: singleMatches.reduce(calculateTotalLosses, 0),
+      totalLosses: singleMatches.reduce(calculateHomeTotalLosses, 0),
       goalsFavor: goalsFavor += matche.homeTeamGoals,
       goalsOwn: goalsTaken += matche.awayTeamGoals,
       goalsBalance: goalsFavor - goalsTaken,
-      efficiency: (((singleMatches.reduce(calculateTotalPoints, 0))
+      efficiency: (((singleMatches.reduce(calculateHomeTotalPoints, 0))
         / (singleMatches.length * 3)) * 100).toFixed(2) };
     return obj;
   });

@@ -6,6 +6,7 @@ export interface IMatches {
   awayTeamGoals: number;
   inProgress: boolean;
   homeTeam: { teamName: string };
+  awayTeam: { teamName: string };
 }
 
 export interface INewMatche {
