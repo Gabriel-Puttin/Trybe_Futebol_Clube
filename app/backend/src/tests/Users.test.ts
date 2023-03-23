@@ -19,11 +19,11 @@ const { expect } = chai;
 describe('Teste da rotar "/login"', () => {
 
   let chaiHttpResponse: Response;
-  before(async () => {
+  beforeEach(async () => {
     sinon.stub(Users, "findOne").resolves(userMock as Users);
   });
 
-  after(() => {
+  afterEach(() => {
     (Users.findOne as sinon.SinonStub).restore();
     sinon.restore();
   })

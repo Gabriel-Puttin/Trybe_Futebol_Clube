@@ -19,14 +19,12 @@ describe('Teste da rotar "/teams"', () => {
 
   let chaiHttpResponse: Response;
 
-  after(() => {
+  afterEach(() => {
     sinon.restore();
   })
 
   it('Verifica se é possível buscar todos os times', async () => {
-    before(async () => {
-      sinon.stub(Teams, 'findAll').resolves(allTeams as ITeams[] | any);
-    });
+    sinon.stub(Teams, 'findAll').resolves(allTeams as ITeams[] | any);
 
     chaiHttpResponse = await chai.request(app).get('/teams/');
 
@@ -35,9 +33,7 @@ describe('Teste da rotar "/teams"', () => {
   });
 
   it('Verifica se é possível buscar por apenas 1 time', async () => {
-    before(async () => {
-      sinon.stub(Teams, 'findByPk').resolves(oneTeam as ITeams | any);
-    });
+    sinon.stub(Teams, 'findByPk').resolves(oneTeam as ITeams | any);
 
     chaiHttpResponse = await chai.request(app).get('/teams/10/');
 
