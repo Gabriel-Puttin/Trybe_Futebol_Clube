@@ -21,6 +21,7 @@ Este projeto teve como objetivo a construção de uma API para gerenciar um site
 # Documentação
 
 Para a execução deste propjeto é necessário ter o Docker e o Docker-Compose instalados na sua máquina. Portanto confira a documentação oficial para a instalação.
+Além do node na versão 16 ou superior.
 
 ## Instalando Dependências
 
