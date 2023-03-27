@@ -37,25 +37,33 @@ Além do node na versão 16 ou superior.
 
 1. Clone o repositório (caso esteja usando chave SSH)
 ```
-git clone git@github.com:Gabriel-Puttin/Car_Shop.git
+git clone git@github.com:Gabriel-Puttin/Trybe_Futebol_Clube.git
 ```
 2. Entre na pasta que você acabou de clonar
 ```
-cd Car_Shop
+cd Trybe_Futebol_Clube/app
 ```
-3. Suba a aplicação com o docker-compose
-```
-docker-compose up -d
-```
-4. Acesse o terminal do container backend criado
-```
-docker exec -it car_shop bash
-```
-5. Instale as dependências
+3. instale as depedências
 ```
 npm install
 ```
-6. Rode a aplicação
+4. Entre no diretório back-end da aplicação
 ```
-npm run dev
+cd backend/
+```
+5. Execute o script que irá popular o banco de dados
+```
+npm run db:reset
+```
+6. Retorne para o diretório raiz da aplicação
+```
+cd ../../
+```
+7. Rode a aplicação
+```
+npm run compose:up
+```
+8. Acesse a aplicação no navegador
+```
+https://localhost:3000/
 ```
